@@ -1,6 +1,6 @@
-let list = JSON.parse(localStorage.getItem('checkList')) || [];// array to add values to it
+let list = JSON.parse(localStorage.getItem('list')) || [];// array to add values to it
 const addBtn = document.getElementById("add-btn"); //Button to add input
-const ul = document.getElementById('checkList'); //ul list
+const ul = document.getElementById('list'); //ul list
 
 document.addEventListener("DOMContentLoaded", () =>{
     render(list)
@@ -13,7 +13,7 @@ addBtn.addEventListener("click", () =>{
     if(input){
         list.push(input)
         //Save list to local storage
-        localStorage.setItem('checkList', JSON.stringify(list))
+        localStorage.setItem('list', JSON.stringify(list))
     }
     //otherwise alert us if it is not.
     else{
@@ -25,14 +25,14 @@ addBtn.addEventListener("click", () =>{
     render(list)
 })
 
-//function to render out the checklist
-function render(checkList){
+//function to render out the list
+function render(list){
     //Add items to the list array
     let addList = "";
-    for(let i = 0; i < checkList.length; i++){
+    for(let i = 0; i < list.length; i++){
         addList += `
         <li>
-            ${checkList[i]} 
+            ${list[i]} 
             <span class="close" onclick="removeItem(${i})">x</span>
             
         </li>
@@ -48,7 +48,7 @@ function removeItem(index){
    //Remove item from list
     list.splice(index, 1);
     //Save list to local storage
-    localStorage.setItem('checkList', JSON.stringify(list))
+    localStorage.setItem('list', JSON.stringify(list))
     //Render list
     render(list);
 }
